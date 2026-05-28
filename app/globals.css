@@ -1,22 +1,23 @@
 @import "tailwindcss";
 
 @theme {
-  /* 品牌核心配色：深邃宇宙蓝与霓虹紫 */
-  --color-brand-primary: #6366f1;
-  --color-brand-secondary: #a855f7;
-  --color-brand-accent: #f43f5e;
+  /* 白色玻璃质感配色 */
+  --color-brand-primary: #7c8cff;
+  --color-brand-secondary: #b794ff;
+  --color-brand-accent: #ff9aa2;
 
-  --color-background: #030712;
-  --color-foreground: #f9fafb;
+  --color-background: #f5f7fb;
+  --color-foreground: #0b1020;
 
-  --color-card: #1f2937;
-  --color-card-foreground: #f9fafb;
+  --color-card: #ffffff;
+  --color-card-foreground: #0b1020;
 
-  --color-muted: #6b7280;
-  --color-muted-foreground: #9ca3af;
+  --color-muted: #e5e9f2;
+  --color-muted-foreground: #5b6478;
 
-  --animate-float: float 6s ease-in-out infinite;
-  --animate-pulse-slow: pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  --animate-float: float 7s ease-in-out infinite;
+  --animate-blob: blob 18s ease-in-out infinite;
+  --animate-shimmer: shimmer 2.5s linear infinite;
 
   @keyframes float {
     0%,
@@ -24,31 +25,110 @@
       transform: translateY(0);
     }
     50% {
-      transform: translateY(-20px);
+      transform: translateY(-18px);
+    }
+  }
+
+  @keyframes blob {
+    0%,
+    100% {
+      transform: translate(0, 0) scale(1);
+    }
+    33% {
+      transform: translate(40px, -30px) scale(1.08);
+    }
+    66% {
+      transform: translate(-30px, 30px) scale(0.95);
+    }
+  }
+
+  @keyframes shimmer {
+    0% {
+      background-position: -200% 0;
+    }
+    100% {
+      background-position: 200% 0;
     }
   }
 }
 
 :root {
-  --background: #030712;
-  --foreground: #f9fafb;
+  --background: #f5f7fb;
+  --foreground: #0b1020;
 }
 
+html,
 body {
   background: var(--background);
   color: var(--foreground);
   overflow-x: hidden;
 }
 
-/* 玻璃拟象效果 */
+body {
+  background-image:
+    radial-gradient(at 12% 8%, rgba(124, 140, 255, 0.22) 0px, transparent 50%),
+    radial-gradient(at 88% 18%, rgba(183, 148, 255, 0.2) 0px, transparent 55%),
+    radial-gradient(at 78% 92%, rgba(255, 154, 162, 0.18) 0px, transparent 50%),
+    radial-gradient(at 18% 88%, rgba(124, 220, 255, 0.18) 0px, transparent 55%);
+  background-attachment: fixed;
+}
+
+/* 白色玻璃 */
 .glass {
-  background: rgba(255, 255, 255, 0.03);
-  backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.55);
+  backdrop-filter: blur(24px) saturate(180%);
+  -webkit-backdrop-filter: blur(24px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.7);
+  box-shadow:
+    0 1px 0 0 rgba(255, 255, 255, 0.9) inset,
+    0 10px 30px -10px rgba(15, 23, 42, 0.12),
+    0 2px 8px -2px rgba(15, 23, 42, 0.06);
+}
+
+.glass-strong {
+  background: rgba(255, 255, 255, 0.75);
+  backdrop-filter: blur(28px) saturate(200%);
+  -webkit-backdrop-filter: blur(28px) saturate(200%);
+  border: 1px solid rgba(255, 255, 255, 0.85);
+  box-shadow:
+    0 1px 0 0 rgba(255, 255, 255, 1) inset,
+    0 20px 60px -15px rgba(15, 23, 42, 0.18),
+    0 4px 12px -4px rgba(15, 23, 42, 0.08);
+}
+
+.glass-subtle {
+  background: rgba(255, 255, 255, 0.35);
+  backdrop-filter: blur(16px) saturate(160%);
+  -webkit-backdrop-filter: blur(16px) saturate(160%);
+  border: 1px solid rgba(255, 255, 255, 0.5);
 }
 
 .text-gradient {
-  background: linear-gradient(135deg, #6366f1 0%, #a855f7 50%, #f43f5e 100%);
+  background: linear-gradient(135deg, #6366f1 0%, #a855f7 45%, #ec4899 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.shimmer {
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.6),
+    transparent
+  );
+  background-size: 200% 100%;
+  animation: shimmer 2.5s linear infinite;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(124, 140, 255, 0.25);
+  border-radius: 8px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(124, 140, 255, 0.45);
 }
