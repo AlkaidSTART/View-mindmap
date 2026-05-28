@@ -5,13 +5,13 @@
   --color-brand-primary: #6366f1;
   --color-brand-secondary: #a855f7;
   --color-brand-accent: #f43f5e;
-  
+
   --color-background: #030712;
   --color-foreground: #f9fafb;
-  
+
   --color-card: #1f2937;
   --color-card-foreground: #f9fafb;
-  
+
   --color-muted: #6b7280;
   --color-muted-foreground: #9ca3af;
 
@@ -19,8 +19,13 @@
   --animate-pulse-slow: pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
 
   @keyframes float {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-20px); }
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-20px);
+    }
   }
 }
 
