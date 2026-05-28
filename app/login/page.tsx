@@ -28,59 +28,70 @@ export default function LoginPage() {
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
+    const ticket = ticketRef.current;
     const ctx = gsap.context(() => {
-      gsap.from("[data-login-copy]", {
-        opacity: 0,
-        y: 24,
-        duration: 0.85,
-        stagger: 0.12,
-        ease: "power3.out",
-      });
+      gsap.fromTo(
+        "[data-login-copy]",
+        { opacity: 0, y: 24 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.85,
+          stagger: 0.12,
+          ease: "power3.out",
+          immediateRender: false,
+        },
+      );
 
-      gsap.from("[data-login-form]", {
-        opacity: 0,
-        y: 36,
-        duration: 0.95,
-        delay: 0.22,
-        ease: "expo.out",
-      });
-
-      if (ticketRef.current) {
-        const ticket = ticketRef.current;
-        const handleMove = (event: MouseEvent) => {
-          const rect = ticket.getBoundingClientRect();
-          const x = event.clientX - rect.left - rect.width / 2;
-          const y = event.clientY - rect.top - rect.height / 2;
-
-          gsap.to(ticket, {
-            rotateY: x / 30,
-            rotateX: -y / 34,
-            transformPerspective: 1200,
-            duration: 0.5,
-            ease: "power2.out",
-          });
-        };
-
-        const handleLeave = () => {
-          gsap.to(ticket, {
-            rotateX: 0,
-            rotateY: 0,
-            duration: 0.7,
-            ease: "power3.out",
-          });
-        };
-
-        ticket.addEventListener("mousemove", handleMove);
-        ticket.addEventListener("mouseleave", handleLeave);
-
-        return () => {
-          ticket.removeEventListener("mousemove", handleMove);
-          ticket.removeEventListener("mouseleave", handleLeave);
-        };
-      }
+      gsap.fromTo(
+        "[data-login-form]",
+        { opacity: 0, y: 36 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.95,
+          delay: 0.22,
+          ease: "expo.out",
+          immediateRender: false,
+        },
+      );
     }, stageRef);
 
-    return () => ctx.revert();
+    if (!ticket) {
+      return () => ctx.revert();
+    }
+
+    const handleMove = (event: MouseEvent) => {
+      const rect = ticket.getBoundingClientRect();
+      const x = event.clientX - rect.left - rect.width / 2;
+      const y = event.clientY - rect.top - rect.height / 2;
+
+      gsap.to(ticket, {
+        rotateY: x / 30,
+        rotateX: -y / 34,
+        transformPerspective: 1200,
+        duration: 0.5,
+        ease: "power2.out",
+      });
+    };
+
+    const handleLeave = () => {
+      gsap.to(ticket, {
+        rotateX: 0,
+        rotateY: 0,
+        duration: 0.7,
+        ease: "power3.out",
+      });
+    };
+
+    ticket.addEventListener("mousemove", handleMove);
+    ticket.addEventListener("mouseleave", handleLeave);
+
+    return () => {
+      ticket.removeEventListener("mousemove", handleMove);
+      ticket.removeEventListener("mouseleave", handleLeave);
+      ctx.revert();
+    };
   }, []);
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {

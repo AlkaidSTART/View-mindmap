@@ -55,36 +55,56 @@ export default function LandingPage() {
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      gsap.from("[data-hero-kicker]", {
-        opacity: 0,
-        y: 18,
-        duration: 0.8,
-        ease: "power3.out",
-      });
+      gsap.fromTo(
+        "[data-hero-kicker]",
+        { opacity: 0, y: 18 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.8,
+          ease: "power3.out",
+          immediateRender: false,
+        },
+      );
 
-      gsap.from("[data-hero-title] .hero-line", {
-        opacity: 0,
-        y: 64,
-        duration: 1,
-        stagger: 0.12,
-        ease: "expo.out",
-      });
+      gsap.fromTo(
+        "[data-hero-title] .hero-line",
+        { opacity: 0, y: 64 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 1,
+          stagger: 0.12,
+          ease: "expo.out",
+          immediateRender: false,
+        },
+      );
 
-      gsap.from("[data-hero-copy]", {
-        opacity: 0,
-        y: 24,
-        duration: 0.8,
-        delay: 0.3,
-        ease: "power3.out",
-      });
+      gsap.fromTo(
+        "[data-hero-copy]",
+        { opacity: 0, y: 24 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.8,
+          delay: 0.3,
+          ease: "power3.out",
+          immediateRender: false,
+        },
+      );
 
-      gsap.from("[data-hero-actions]", {
-        opacity: 0,
-        y: 20,
-        duration: 0.8,
-        delay: 0.45,
-        ease: "power3.out",
-      });
+      gsap.fromTo(
+        "[data-hero-actions]",
+        { opacity: 0, y: 20 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.8,
+          delay: 0.45,
+          ease: "power3.out",
+          immediateRender: false,
+        },
+      );
 
       gsap.to(".orbit-dot", {
         y: "random(-20, 20)",
@@ -97,28 +117,38 @@ export default function LandingPage() {
       });
 
       if (editorialRef.current) {
-        gsap.from(editorialRef.current.children, {
-          opacity: 0,
-          y: 42,
-          duration: 0.9,
-          stagger: 0.12,
-          delay: 0.25,
-          ease: "power3.out",
-        });
+        gsap.fromTo(
+          editorialRef.current.children,
+          { opacity: 0, y: 42 },
+          {
+            opacity: 1,
+            y: 0,
+            duration: 0.9,
+            stagger: 0.12,
+            delay: 0.25,
+            ease: "power3.out",
+            immediateRender: false,
+          },
+        );
       }
 
       if (cardsRef.current) {
-        gsap.from(cardsRef.current.children, {
-          scrollTrigger: {
-            trigger: cardsRef.current,
-            start: "top 82%",
+        gsap.fromTo(
+          cardsRef.current.children,
+          { opacity: 0, y: 44 },
+          {
+            scrollTrigger: {
+              trigger: cardsRef.current,
+              start: "top 82%",
+            },
+            opacity: 1,
+            y: 0,
+            duration: 0.85,
+            stagger: 0.14,
+            ease: "power3.out",
+            immediateRender: false,
           },
-          opacity: 0,
-          y: 44,
-          duration: 0.85,
-          stagger: 0.14,
-          ease: "power3.out",
-        });
+        );
       }
     }, heroRef);
 
