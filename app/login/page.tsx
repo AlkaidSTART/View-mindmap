@@ -270,8 +270,11 @@ export default function LoginPage() {
 
             <p className="mt-6 text-sm text-foreground/58">
               还没有账号？{" "}
-              <Link href="/" className="font-semibold text-brand-primary hover:opacity-80">
-                先看看产品首页
+              <Link
+                href="/register"
+                className="font-semibold text-brand-primary hover:opacity-80"
+              >
+                立即注册
               </Link>
             </p>
           </motion.div>

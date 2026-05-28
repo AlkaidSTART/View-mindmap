@@ -236,8 +236,11 @@ export default function LandingPage() {
               data-hero-actions
               className="mt-10 flex flex-col gap-4 sm:flex-row sm:items-center"
             >
-              <Link href="/login" className="editorial-button editorial-button--primary">
-                用邮箱开始
+              <Link
+                href="/register"
+                className="editorial-button editorial-button--primary"
+              >
+                创建账号
                 <ArrowRight className="h-4 w-4" />
               </Link>
               <a href="#why" className="editorial-button editorial-button--ghost">
@@ -369,8 +372,11 @@ export default function LandingPage() {
               直接变成一张能讨论的图了吗？
             </h3>
           </div>
-          <Link href="/login" className="editorial-button editorial-button--primary">
-            登录工作台
+          <Link
+            href="/register"
+            className="editorial-button editorial-button--primary"
+          >
+            注册并开始
             <ArrowRight className="h-4 w-4" />
           </Link>
         </div>
