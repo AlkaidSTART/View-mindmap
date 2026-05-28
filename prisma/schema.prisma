@@ -1,11 +1,12 @@
-// Prisma schema — PostgreSQL
+// Prisma schema — PostgreSQL (Prisma 7)
+// 注意：连接 URL 已从 schema 中移除，统一在 prisma.config.ts 中配置
+// 运行时通过 @prisma/adapter-pg 的 driver adapter 连接数据库
 generator client {
   provider = "prisma-client-js"
 }
 
 datasource db {
   provider = "postgresql"
-  url      = env("DATABASE_URL")
 }
 
 model User {
@@ -22,9 +23,8 @@ model User {
 model Mindmap {
   id        String   @id @default(cuid())
   title     String
-  // 思维导图节点数据，JSON 形式持久化
   data      Json
-  sourceDoc String?  // 原始文档名 / URL
+  sourceDoc String?
   userId    String
   user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
   createdAt DateTime @default(now())
